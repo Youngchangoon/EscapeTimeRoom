@@ -1,142 +1,60 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Control : MonoBehaviour
 {
+    public float velocity = 5;
+    public float turnSpeed = 10;
 
-    public bool isGrounded;
-    public bool isCrouching;
+    private Vector2 _input;
+    private float _angle;
 
-    private float speed;
-    private float w_speed = 0.05f;
-    private float r_speed = 0.1f;
-    private float c_speed = 0.025f;
-    public float rotSpeed;
-    public float jumpHeight;
-    Rigidbody rb;
-    // Animator anim;
-    // CapsuleCollider col_size;
+    private Quaternion _targetRotation;
+    private Transform _cam;
 
-    // Use this for initialization 
-    void Start()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        // anim = GetComponent<Animator>();
-        // col_size = GetComponent<CapsuleCollider>();
-        isGrounded = true;
+        _cam = Camera.main.transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        GetInput();
+        
+        if(Math.Abs(_input.x) < 1 && Mathf.Abs(_input.y) < 1) 
+            return;
 
-        // Toggle Crouch
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            if (isCrouching)
-            {
-                isCrouching = false;
-                // anim.SetBool("isCrouching", false);
-                //col_size.height = 1.8f;
-                //col_size.center = new Vector3(0, 1, 0);
-            }
-            else
-            {
-                isCrouching = true;
-                //anim.SetBool("isCrouching", true);
-                speed = c_speed;
-                //col_size.height = .9f;
-                //col_size.center = new Vector3(0, 0.5f, 0);
-            }
-        }
-        var z = Input.GetAxis("Vertical") * speed;
-        var y = Input.GetAxis("Horizontal") * rotSpeed;
-
-
-        transform.Translate(0, 0, z);
-        transform.Rotate(0, y, 0);
-
-        if (Input.GetKey(KeyCode.Space) && isGrounded == true)
-        {
-            rb.AddForce(0, jumpHeight, 0);
-            //anim.SetTrigger("isJumping");
-            isCrouching = false;
-            isGrounded = false;
-        }
-
-        if (isCrouching)
-        {
-            //Crouching Controls
-            if (Input.GetKey(KeyCode.W))
-            {
-                //anim.SetBool("isWalking", true);
-                //anim.SetBool("isRunning", false);
-                //anim.SetBool("isIdle", false);
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                //anim.SetBool("isWalking", true);
-                //anim.SetBool("isRunning", false);
-                //anim.SetBool("isIdle", false);
-            }
-            else
-            {
-                //anim.SetBool("isWalking", false);
-                //anim.SetBool("isRunning", false);
-                //anim.SetBool("isIdle", true);
-            }
-        }
-        else if (Input.GetKey(KeyCode.LeftShift))
-        {
-            speed = r_speed;
-            //Running Controls
-            if (Input.GetKey(KeyCode.W))
-            {
-                //anim.SetBool("isWalking", false);
-                //anim.SetBool("isIdle", false);
-                //anim.SetBool("isRunning", true);
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                //anim.SetBool("isWalking", false);
-                //anim.SetBool("isIdle", false);
-                //anim.SetBool("isRunning", true);
-            }
-            else
-            {
-                //anim.SetBool("isWalking", false);
-                //anim.SetBool("isRunning", false);
-                //anim.SetBool("isIdle", true);
-            }
-        }
-        else if (!isCrouching)
-        {
-            speed = w_speed;
-            //Standing Controls
-            if (Input.GetKey(KeyCode.W))
-            {
-                //anim.SetBool("isWalking", true);
-                //anim.SetBool("isRunning", false);
-                //anim.SetBool("isIdle", false);
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                //anim.SetBool("isWalking", true);
-                //anim.SetBool("isRunning", false);
-                //anim.SetBool("isIdle", false);
-            }
-            else
-            {
-                //anim.SetBool("isWalking", false);
-                //anim.SetBool("isRunning", false);
-                //anim.SetBool("isIdle", true);
-            }
-        }
+        CalculateDirection();
+        Rotate();
+        Move();
     }
 
-    void OnCollisionEnter()
+    private void GetInput()
     {
-        isGrounded = true;
+        _input.x = Input.GetAxisRaw("Horizontal");
+        _input.y = Input.GetAxisRaw("Vertical");
     }
+
+    private void CalculateDirection()
+    {
+        _angle = Mathf.Atan2(_input.x, _input.y);
+        _angle = Mathf.Rad2Deg * _angle;
+        _angle += _cam.eulerAngles.y;
+    }
+
+    private void Rotate()
+    {
+        _targetRotation = Quaternion.Euler(0, _angle, 0);
+        transform.rotation = _targetRotation;
+        // transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, turnSpeed * Time.deltaTime);
+    }
+
+    void Move()
+    {
+        transform.position += transform.forward * velocity * Time.deltaTime;
+    }
+    
+    
 }
