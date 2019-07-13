@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 76c8b7872ed909a459bd97a3da6c6f98
+guid: 4eeba0184b391e84fa9415f7afad9862
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
-      74: -203655887218126122
-    second: mixamo.com
+      74: 1827226128182048838
+    second: Take 001
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
-      takeName: mixamo.com
-      internalID: -203655887218126122
+      name: Take 001
+      takeName: Take 001
+      internalID: 1827226128182048838
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
