@@ -417,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38f96d2522b5be489c2a5dc0a015fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minimumValue: 0.1
 --- !u!114 &254849770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +447,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &569527071
 GameObject:
@@ -907,6 +908,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: man_rig_basic
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 4eeba0184b391e84fa9415f7afad9862,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d5e6af9a500bd0b4fa40b7f6a078a6c5, type: 2}
     - target: {fileID: -7917173391762035755, guid: 4eeba0184b391e84fa9415f7afad9862,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -992,11 +998,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -33.3506
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 4eeba0184b391e84fa9415f7afad9862,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: d5e6af9a500bd0b4fa40b7f6a078a6c5, type: 2}
     - target: {fileID: -5478373904953953748, guid: 4eeba0184b391e84fa9415f7afad9862,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
