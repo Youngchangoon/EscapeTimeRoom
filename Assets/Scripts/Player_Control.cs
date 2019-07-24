@@ -14,19 +14,23 @@ public class Player_Control : MonoBehaviour
 
     private Quaternion _targetRotation;
     private Transform _cam;
-    
+
+    private Player_BlockMovement _blockMovement;
+
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
 
     private void Start()
     {
         _cam = Camera.main.transform;
+
+        _blockMovement = GetComponent<Player_BlockMovement>();
     }
 
     private void Update()
     {
         GetInput();
-        
-        if(Math.Abs(_input.x) < 1 && Mathf.Abs(_input.y) < 1) 
+
+        if (Math.Abs(_input.x) < 1 && Mathf.Abs(_input.y) < 1) 
             return;
 
         CalculateDirection();
@@ -38,6 +42,8 @@ public class Player_Control : MonoBehaviour
     {
         _input.x = Input.GetAxisRaw("Horizontal");
         _input.y = Input.GetAxisRaw("Vertical");
+
+        _input = _blockMovement.ExcludeDirection(_input);
 
         if (Mathf.Abs(_input.x) > 0f || Mathf.Abs(_input.y) > 0f) animator.SetBool(IsMoving, true);
         else animator.SetBool(IsMoving, false);

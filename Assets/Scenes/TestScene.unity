@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 46515883}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: ExcludeObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -405,6 +405,18 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 2095490345}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &254849769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254849767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38f96d2522b5be489c2a5dc0a015fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &254849770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +432,22 @@ MonoBehaviour:
   animator: {fileID: 254849768}
   velocity: 3
   turnSpeed: 10
+--- !u!54 &254849771
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254849767}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &569527071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,3 +1414,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eeba0184b391e84fa9415f7afad9862, type: 3}
+--- !u!1 &2095490346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2534866581884222612, guid: 4eeba0184b391e84fa9415f7afad9862,
+    type: 3}
+  m_PrefabInstance: {fileID: 2095490345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &2095490347
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095490346}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.034633663
+  m_Height: 0.15282391
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.00001322963, z: 0.001}
